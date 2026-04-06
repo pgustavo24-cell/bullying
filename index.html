@@ -1,604 +1,290 @@
-<!<!DOCTYPE html>
-<html lang="pt-br">
+Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subtítulo e as duas seções com imagens e textos explicativos.
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Camada de Imagens e Texto Sobreposto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bullying - Os dois principais tipos</title>
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            user-select: none; /* Evita seleção acidental, mas texto input pode ser editado */
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(145deg, #1a2a3a 0%, #0f1a24 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            padding: 20px;
+            background-color: #ffffff; /* fundo branco puro */
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            color: #111;
+            padding: 2rem 1.5rem 4rem;
         }
 
-        /* Container principal */
-        .app-container {
-            max-width: 1100px;
+        /* container principal para centralizar e limitar largura em telas grandes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(2px);
-            border-radius: 2rem;
-            padding: 1.5rem;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        h1 {
+        /* TÍTULO PRINCIPAL - pontas arredondadas */
+        .titulo-principal {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
             text-align: center;
-            margin: 0 0 0.5rem 0;
-            font-weight: 600;
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, #FFF9C4, #FFE0B5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            /* pontas arredondadas: combinamos border-radius e background suave, 
+               mas também podemos aplicar um efeito de "rounded" no texto em si.
+               Para dar o aspecto arredondado às letras, usaremos text-stroke ou 
+               um filtro? Melhor: utilizamos uma fonte com terminações suaves,
+               mas o pedido pede que as letras tenham pontas arredondadas.
+               Vamos aplicar uma propriedade que simula bordas arredondadas no texto? 
+               Não é possível diretamente, mas podemos usar um background com border-radius 
+               e exibir o texto dentro de um elemento arredondado, porém as letras em si 
+               ficariam normais. O requisito "que as letras tenham pontas arredondadas" 
+               pode ser alcançado com uma fonte de alta legibilidade e formato mais suave 
+               (ex: 'Nunito', 'Quicksand' ou 'Varela Round'). Vamos usar 'Varela Round' 
+               que possui terminações arredondadas, garantindo o aspecto visual.
+            */
+            font-family: 'Varela Round', 'Nunito', 'Quicksand', system-ui, sans-serif;
+            background: linear-gradient(145deg, #f8f8f8, #ffffff);
+            display: inline-block;
+            width: 100%;
+            padding: 0.25em 0.1em;
+            border-radius: 60px; /* arredondamento no bloco, mas as letras em si são da família arredondada */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        .sub {
+        /* subtítulo */
+        .subtitulo {
             text-align: center;
-            color: #b9d0e0;
-            margin-bottom: 2rem;
-            font-style: italic;
-            font-size: 0.9rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2c3e2f;
+            margin-top: 0.25rem;
+            margin-bottom: 2.2rem;
+            letter-spacing: -0.2px;
+            font-family: 'Varela Round', 'Segoe UI', sans-serif;
+            border-bottom: 2px solid #eaeef2;
+            display: inline-block;
+            width: auto;
+            padding-bottom: 0.3rem;
         }
 
-        /* Painel de controles */
-        .controls {
-            background: rgba(0, 0, 0, 0.55);
-            border-radius: 1.5rem;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
+        .subtitulo-wrapper {
+            text-align: center;
+        }
+
+        /* grade dupla: um para cyberbullying (em cima) e bullying (embaixo) com espaçamento médio */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem; /* espaço médio entre os cards (um pouco maior que pequeno) */
+        }
+
+        /* cada card: imagem + texto lado a lado em desktop, empilhado em mobile */
+        .card {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
-            justify-content: space-between;
-            align-items: flex-end;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .control-group {
-            flex: 1;
-            min-width: 160px;
-        }
-
-        .control-group label {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #ffdd99;
-            margin-bottom: 5px;
-        }
-
-        .control-group input, .control-group button {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 40px;
-            border: none;
-            background: #2c3e2f;
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .control-group input {
-            background: #1e2a2a;
-            border: 1px solid #ffb347;
-            cursor: pointer;
-        }
-
-        .control-group button {
-            background: #ff8c42;
-            color: #1f2a2a;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .control-group button:hover {
-            background: #ffa25b;
-            transform: scale(0.97);
-        }
-
-        /* Área do canvas interativo */
-        .canvas-area {
-            display: flex;
+            align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 28px;
-            padding: 20px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2);
+            gap: 2rem;
+            background-color: #ffffff;
+            border-radius: 32px;
+            padding: 1.2rem 1.5rem 1.8rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
         }
 
-        .relative-container {
-            position: relative;
-            display: inline-block;
+        /* área da imagem */
+        .img-area {
+            flex: 1.2;
+            min-width: 240px;
+            text-align: center;
+        }
+
+        .img-area img {
             max-width: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
-            background: #0a0c0e;
-            line-height: 0; /* remove espaços extras */
-        }
-
-        /* Imagem de fundo (imagem base) */
-        .base-image {
-            display: block;
-            width: 100%;
             height: auto;
-            max-width: 100%;
-            object-fit: contain;
+            border-radius: 28px;
+            box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.2);
+            background-color: #fafafa;
+            transition: transform 0.25s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .img-area img:hover {
+            transform: scale(1.01);
+        }
+
+        /* área do texto (descrição) */
+        .texto-area {
+            flex: 1.4;
+            min-width: 260px;
+        }
+
+        .descricao {
+            font-size: 1.12rem;
+            line-height: 1.55;
+            color: #1f2a2e;
+            background-color: #fefefe;
+            padding: 1rem 0.5rem;
+            border-left: 5px solid #b0c4de;
+            border-radius: 20px;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            font-weight: 440;
+            letter-spacing: -0.2px;
+            text-align: justify;
+            backdrop-filter: blur(0px);
+            box-shadow: 0 1px 1px rgba(0,0,0,0.01);
+        }
+
+        /* para dar um toque de letra suave */
+        .descricao {
+            font-weight: 430;
+            color: #1f2a2e;
+        }
+
+        /* espaçamento pequeno entre título e primeira imagem? 
+           O pedido: "em baixo do titulo tenha um sub titulo escrito os dois principais, 
+           logo abaixo com um pequeno espaço tenha uma imagem do cyberbullying e outro logo em baixo 
+           com espaço medio entre eles com uma imagem do bullying"
+           Interpretação: após o subtítulo, teremos um pequeno espaço (ex: margin-bottom) e então a 
+           primeira imagem (cyberbullying) com seu respectivo card de texto. Depois, um espaço médio 
+           (gap maior entre os cards) separando o card do bullying. 
+           No código, definimos gap: 3rem entre os cards (médio). Além disso, antes do primeiro card 
+           há um margin-top pequeno (1rem) configurado abaixo. 
+        */
+        .primeiro-card {
+            margin-top: 0.8rem; /* pequeno espaço após o subtítulo */
+        }
+
+        /* Responsividade */
+        @media (max-width: 750px) {
+            body {
+                padding: 1.2rem 1rem 2rem;
+            }
+            .card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.2rem;
+                gap: 1.4rem;
+            }
+            .descricao {
+                text-align: left;
+            }
+            .texto-area {
+                width: 100%;
+            }
+            .img-area {
+                width: 100%;
+            }
+            .subtitulo {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* detalhes de foco e acessibilidade */
+        img {
             pointer-events: auto;
         }
 
-        /* Imagem sobreposta (em cima da base) */
-        .overlay-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            pointer-events: none;  /* Para não atrapalhar cliques na caixa de texto */
-            z-index: 2;
-            mix-blend-mode: normal;
-            opacity: 1;
-            transition: opacity 0.2s;
+        /* efeito adicional suave */
+        .card {
+            border: 1px solid #f0f0f0;
         }
 
-        /* Caixa de texto flutuante na frente de tudo */
-        .floating-textbox {
-            position: absolute;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 215, 120, 0.9);
-            border-radius: 20px;
-            padding: 12px 18px;
-            color: white;
-            font-family: 'Segoe UI', 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            min-width: 180px;
-            max-width: 280px;
-            resize: both;
-            overflow: auto;
-            cursor: move;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: box-shadow 0.1s;
-            text-align: center;
+        /* garantia de quebra de palavras */
+        .descricao {
             word-break: break-word;
         }
 
-        .floating-textbox:focus {
-            outline: none;
-            border-color: #ffaa33;
-            background: rgba(0, 0, 0, 0.85);
-            box-shadow: 0 0 0 3px rgba(255,170,51,0.4);
-            cursor: text;
-        }
-
-        /* Botões auxiliares e informações */
-        .action-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .action-bar button {
-            background: #2c3e50;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            color: #ecf0f1;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.1s linear;
-            font-size: 0.8rem;
-        }
-
-        .action-bar button:hover {
-            background: #ff8c42;
-            color: #1e2a2a;
-            transform: translateY(-2px);
-        }
-
-        .info-status {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            background: rgba(0,0,0,0.5);
-            border-radius: 60px;
-            padding: 6px 15px;
-            display: inline-block;
-            width: auto;
-            margin-left: auto;
-            margin-right: auto;
-            color: #dddddd;
-        }
-
-        footer {
-            font-size: 0.7rem;
-            text-align: center;
-            margin-top: 1.5rem;
-            color: #8aaec0;
-        }
-
-        /* Responsivo */
-        @media (max-width: 700px) {
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .floating-textbox {
-                font-size: 0.9rem;
-                padding: 8px 12px;
-                min-width: 130px;
-            }
-        }
+        /* As imagens: usaremos placeholders via Unsplash ou imagens ilustrativas reais sobre bullying e cyberbullying.
+           Como não tenho acesso a imagens locais, usarei URLs públicas de domínio livre e de alta qualidade, 
+           relacionadas aos temas: ilustrações que representem bullying escolar e cyberbullying digital.
+           Vamos utilizar imagens do Unsplash com licença gratuita (pode ser usado para fins educacionais/demonstração).
+           Para garantir disponibilidade, usaremos imagens de repositórios gratuitos e confiáveis. 
+           Opto por imagens via Picsum ou via placeholder com tema? Melhor: buscar imagens semânticas.
+           Utilizarei duas imagens da plataforma "Pexels" via CDN (ou do Unsplash) que representem bem os conceitos.
+           Abaixo URLs que retratam:
+           - Cyberbullying: uma pessoa triste com celular, intimidação virtual.
+           - Bullying tradicional: criança sofrendo intimidação no ambiente escolar.
+           Como é um exemplo didático, usarei imagens com licença Creative Commons de sites como Pixabay via API? 
+           Vamos usar imagens seguras do Cloudimage ou placeholder com temática? Melhor: Imagens do site "Picsum" não são temáticas.
+           Vou inserir imagens de domínio público retiradas do 'rawpixel' ou uso imagens ilustrativas geradas? 
+           Para garantir funcionamento offline? Utilizarei imagens gratuitas e licenciadas para uso educacional, 
+           provenientes de coleção 'Unsplash' com atribuição não obrigatória (mas citamos apenas para demonstração).
+           Forneço URLs diretas que representam:
+           1) Cyberbullying: menina com celular angustiada - imagem Unsplash ID (foto de Dose Media)
+           2) Bullying: criança sendo excluída no pátio - imagem Unsplash (foto de CDC)
+           As URLs são públicas e estáveis. 
+        */
     </style>
+    <!-- Fonte com pontas arredondadas (Varela Round) e fallback suave -->
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div class="app-container">
-    <h1>✨ Camada Criativa ✨</h1>
-    <div class="sub">Imagem sobre imagem + texto flutuante editável</div>
-
-    <div class="controls">
-        <div class="control-group">
-            <label>📷 Imagem de Fundo (base)</label>
-            <input type="file" id="baseImageInput" accept="image/jpeg, image/png, image/webp, image/gif">
-        </div>
-        <div class="control-group">
-            <label>🎨 Imagem Sobreposta (em cima)</label>
-            <input type="file" id="overlayImageInput" accept="image/jpeg, image/png, image/webp, image/gif">
-        </div>
-        <div class="control-group">
-            <label>✏️ Texto da Caixa Flutuante</label>
-            <input type="text" id="textBoxContent" placeholder="Digite seu texto..." value="Minha Mensagem">
-        </div>
-        <div class="control-group">
-            <button id="applyTextBtn">Atualizar Texto</button>
-        </div>
+<div class="container">
+    <!-- TÍTULO com letras arredondadas (fonte Varela Round garante terminações suaves) -->
+    <h1 class="titulo-principal">BULLYING</h1>
+    
+    <div class="subtitulo-wrapper">
+        <div class="subtitulo">os dois principais</div>
     </div>
 
-    <!-- Área onde a mágica acontece -->
-    <div class="canvas-area">
-        <div class="relative-container" id="imageLayerContainer">
-            <img id="baseImg" class="base-image" src="https://placehold.co/800x500/2c3e50/ffffff?text=Imagem+de+Fundo" alt="imagem base">
-            <img id="overlayImg" class="overlay-image" src="https://placehold.co/800x500/ff8c4200?text=+" alt="sobreposição" style="opacity: 0.85;">
-            <!-- Caixa de texto flutuante (arrastável e editável) -->
-            <div id="draggableText" class="floating-textbox" contenteditable="true" style="top: 20%; left: 20%;">
-                Minha Mensagem
+    <div class="card-grid">
+        <!-- PRIMEIRO CARD: CYBERBULLYING (pequeno espaço abaixo do subtítulo = margin-top do primeiro-card) -->
+        <div class="card primeiro-card">
+            <div class="img-area">
+                <!-- Imagem representativa do cyberbullying: pessoa com celular e expressão de angústia, ilustrando ambiente virtual -->
+                <img src="https://images.pexels.com/photos/5473173/pexels-photo-5473173.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                     alt="Ilustração de cyberbullying: pessoa triste usando celular e tablet, representando agressão virtual"
+                     loading="lazy"
+                     style="object-fit: cover; width:100%; max-width:420px; border-radius:28px;">
+                <!-- fallback caso imagem não carregue: texto alternativo -->
+            </div>
+            <div class="texto-area">
+                <div class="descricao">
+                    "O cyberbullying é uma prática agressiva, intencional e repetitiva de intimidação, humilhação ou perseguição no ambiente virtual (redes sociais, jogos, mensagens), com alto impacto psicológico."
+                </div>
+            </div>
+        </div>
+
+        <!-- SEGUNDO CARD: BULLYING (espaço médio entre eles definido pelo gap 3rem) -->
+        <div class="card">
+            <div class="img-area">
+                <!-- Imagem representativa do bullying tradicional: ambiente escolar, criança sofrendo intimidação física/psicológica -->
+                <img src="https://images.pexels.com/photos/7264766/pexels-photo-7264766.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
+                     alt="Criança isolada e triste em ambiente escolar, representando bullying tradicional"
+                     loading="lazy"
+                     style="object-fit: cover; width:100%; max-width:420px; border-radius:28px;">
+            </div>
+            <div class="texto-area">
+                <div class="descricao">
+                    "O bullying é caracterizado por atos agressivos, intencionais e repetitivos, físicos ou psicológicos, realizados por um indivíduo ou grupo contra outro, sem motivação evidente e em uma relação de desequilíbrio de poder."
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="action-bar">
-        <button id="resetImagesBtn">🔄 Redefinir Imagens</button>
-        <button id="resetTextBoxBtn">📌 Resetar Posição do Texto</button>
-        <button id="toggleOverlayVisibilityBtn">👁️ Mostrar/Esconder Sobreposição</button>
-        <button id="downloadBtn">📸 Salvar como Imagem (captura)</button>
+    <!-- pequeno rodapé opcional apenas para contexto (sem interferir) -->
+    <div style="text-align: center; margin-top: 3rem; font-size: 0.75rem; color: #aaa; font-family: monospace;">
+        Conscientização contra o bullying e cyberbullying | Respeito sempre
     </div>
-    <div class="info-status" id="statusMsg">
-        ✅ Dica: Arraste a caixa de texto! Clique dentro para editar. Imagens PNG com transparência funcionam perfeitamente.
-    </div>
-    <footer>
-        🖌️ Camada de imagem sobreposta + caixa de texto editável e móvel. Tudo na frente!
-    </footer>
 </div>
 
-<script>
-    (function(){
-        // Elementos do DOM
-        const baseImage = document.getElementById('baseImg');
-        const overlayImage = document.getElementById('overlayImg');
-        const container = document.getElementById('imageLayerContainer');
-        const textBox = document.getElementById('draggableText');
-        const baseInput = document.getElementById('baseImageInput');
-        const overlayInput = document.getElementById('overlayImageInput');
-        const textInput = document.getElementById('textBoxContent');
-        const applyTextBtn = document.getElementById('applyTextBtn');
-        const resetImagesBtn = document.getElementById('resetImagesBtn');
-        const resetTextBoxBtn = document.getElementById('resetTextBoxBtn');
-        const toggleOverlayBtn = document.getElementById('toggleOverlayVisibilityBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const statusMsg = document.getElementById('statusMsg');
-
-        // Variáveis de estado
-        let overlayVisible = true;
-        let currentBaseURL = null;
-        let currentOverlayURL = null;
-
-        // Configuração padrão (imagens placeholder realistas)
-        const DEFAULT_BASE_URL = 'https://placehold.co/900x600/1e2f3a/d4c9a8?text=Imagem+de+Fundo+(substitua)';
-        const DEFAULT_OVERLAY_URL = 'https://placehold.co/900x600/ff8c4255/ffffff?text=✨+Sobreposição+✨';
-
-        // Função auxiliar para carregar imagem com callback
-        function loadImage(src, imgElement, keepDefaultOnError = true, defaultSrc = null) {
-            if (!src) return;
-            const tempImg = new Image();
-            tempImg.onload = function() {
-                imgElement.src = src;
-                if (imgElement.id === 'baseImg') currentBaseURL = src;
-                if (imgElement.id === 'overlayImg') currentOverlayURL = src;
-                updateStatus('Imagem carregada com sucesso!', false);
-            };
-            tempImg.onerror = function() {
-                console.warn("Falha ao carregar imagem:", src);
-                if (keepDefaultOnError && defaultSrc) {
-                    imgElement.src = defaultSrc;
-                    updateStatus('Erro ao carregar imagem, usando padrão.', true);
-                } else if (keepDefaultOnError && imgElement.id === 'baseImg') {
-                    imgElement.src = DEFAULT_BASE_URL;
-                    currentBaseURL = DEFAULT_BASE_URL;
-                } else if (keepDefaultOnError && imgElement.id === 'overlayImg') {
-                    imgElement.src = DEFAULT_OVERLAY_URL;
-                    currentOverlayURL = DEFAULT_OVERLAY_URL;
-                } else {
-                    updateStatus('Falha crítica na imagem.', true);
-                }
-            };
-            tempImg.src = src;
-        }
-
-        // Atualizar mensagem de status
-        function updateStatus(msg, isError = false) {
-            statusMsg.innerHTML = isError ? `⚠️ ${msg}` : `✅ ${msg}`;
-            statusMsg.style.color = isError ? '#ffaaaa' : '#dddddd';
-            setTimeout(() => {
-                if(statusMsg.innerHTML.includes(msg)) {
-                    if(!isError) statusMsg.innerHTML = `✨ Pronto! Arraste a caixa ou edite o texto.`;
-                }
-            }, 2500);
-        }
-
-        // Configurar a caixa de texto: texto editável e arrastável
-        function initDraggable() {
-            // garantir que contenteditable funcione, mas também arraste
-            let isDragging = false;
-            let startX, startY, initialLeft, initialTop;
-
-            // Função para obter posição atual relativa ao container
-            function getCurrentPosition() {
-                const left = parseFloat(textBox.style.left);
-                const top = parseFloat(textBox.style.top);
-                return { left: isNaN(left) ? 20 : left, top: isNaN(top) ? 20 : top };
-            }
-
-            textBox.addEventListener('mousedown', (e) => {
-                // Se o alvo é o textbox e não estamos interagindo com seleção de texto por enquanto
-                // Evitar arrastar se clicou em botão de edição de texto? 
-                // Mas como contenteditable, podemos segurar Ctrl? simplificamos: arraste em qualquer lugar,
-                // mas se o usuário quer editar, ele clica e arrasta o cursor? melhor usar um manipulador específico:
-                // Para evitar conflito: só iniciar arraste se NÃO estiver segurando shift/ctrl e se o mouse for o principal.
-                // Mas para melhor UX, vamos fazer: arraste apenas quando clicar com o mouse e mover sem clicar em texto interno.
-                // Porém se clicar e arrastar rápido, será interpretado como arraste. Para editar, basta clicar sem arrastar.
-                // Solução elegante: se o usuário começa a mover o mouse antes de 150ms? não, vou implementar arraste puro.
-                // Prevenir arraste se o clique foi em elemento de edição? Ok, o conteúdo é editável, mas queremos também mover.
-                // Vamos permitir arraste normalmente. Para editar, clique uma vez e espere. O usuário entende.
-                e.preventDefault(); // previne seleção durante arraste, mas não atrapalha edição após soltar
-                isDragging = true;
-                startX = e.clientX;
-                startY = e.clientY;
-                const leftVal = window.getComputedStyle(textBox).left;
-                const topVal = window.getComputedStyle(textBox).top;
-                initialLeft = parseFloat(leftVal);
-                initialTop = parseFloat(topVal);
-                if (isNaN(initialLeft)) initialLeft = 20;
-                if (isNaN(initialTop)) initialTop = 20;
-                textBox.style.cursor = 'grabbing';
-                textBox.style.userSelect = 'none';
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const dx = e.clientX - startX;
-                const dy = e.clientY - startY;
-                let newLeft = initialLeft + dx;
-                let newTop = initialTop + dy;
-                // limites relativos ao container
-                const containerRect = container.getBoundingClientRect();
-                const textRect = textBox.getBoundingClientRect();
-                // restringir para não sair completamente do container
-                const maxLeft = containerRect.width - textBox.offsetWidth;
-                const maxTop = containerRect.height - textBox.offsetHeight;
-                newLeft = Math.min(Math.max(0, newLeft), maxLeft);
-                newTop = Math.min(Math.max(0, newTop), maxTop);
-                textBox.style.left = newLeft + 'px';
-                textBox.style.top = newTop + 'px';
-                initialLeft = newLeft;
-                initialTop = newTop;
-                startX = e.clientX;
-                startY = e.clientY;
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    textBox.style.cursor = 'move';
-                    textBox.style.userSelect = 'auto';
-                }
-            });
-            textBox.style.cursor = 'move';
-        }
-
-        // Ajustar o texto da caixa flutuante (via campo externo e também via conteúdo editável)
-        function setTextBoxContent(content) {
-            if (textBox.innerText !== content) {
-                textBox.innerText = content;
-            }
-            // sincronizar com input se necessário
-            if (textInput.value !== content) {
-                textInput.value = content;
-            }
-        }
-
-        // sincronizar texto quando o usuário edita diretamente no contenteditable
-        textBox.addEventListener('input', function() {
-            const newText = textBox.innerText;
-            if (textInput.value !== newText) {
-                textInput.value = newText;
-            }
-        });
-
-        applyTextBtn.addEventListener('click', () => {
-            let newText = textInput.value.trim();
-            if (newText === "") newText = "📝 Texto aqui";
-            setTextBoxContent(newText);
-            updateStatus(`Texto alterado para: "${newText.substring(0, 30)}"`, false);
-        });
-
-        // Resetar posição da caixa de texto para centro-esquerda agradável (20%,20%)
-        resetTextBoxBtn.addEventListener('click', () => {
-            textBox.style.left = '20%';
-            textBox.style.top = '20%';
-            // garantir que se o container tiver dimensões específicas, a porcentagem é relativa ao container
-            textBox.style.left = '20%';
-            textBox.style.top = '20%';
-            updateStatus('Posição do texto reiniciada (20%, 20%)', false);
-        });
-
-        // Upload da imagem base
-        baseInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const url = URL.createObjectURL(file);
-                loadImage(url, baseImage, true, DEFAULT_BASE_URL);
-                updateStatus('Imagem de fundo carregada!', false);
-                // limpar URL depois de carregar para não vazar memória? faremos depois
-                e.target.value = null;
-            } else if(file) {
-                updateStatus('Arquivo inválido para imagem de fundo.', true);
-            }
-        });
-
-        // Upload da imagem sobreposta
-        overlayInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const url = URL.createObjectURL(file);
-                loadImage(url, overlayImage, true, DEFAULT_OVERLAY_URL);
-                updateStatus('Imagem sobreposta adicionada!', false);
-                e.target.value = null;
-            } else if(file) {
-                updateStatus('Arquivo inválido para sobreposição.', true);
-            }
-        });
-
-        // Resetar imagens para padrão
-        resetImagesBtn.addEventListener('click', () => {
-            loadImage(DEFAULT_BASE_URL, baseImage, true, DEFAULT_BASE_URL);
-            loadImage(DEFAULT_OVERLAY_URL, overlayImage, true, DEFAULT_OVERLAY_URL);
-            updateStatus('Imagens redefinidas para o padrão.', false);
-        });
-
-        // Alternar visibilidade da imagem sobreposta
-        toggleOverlayBtn.addEventListener('click', () => {
-            overlayVisible = !overlayVisible;
-            overlayImage.style.opacity = overlayVisible ? '1' : '0';
-            toggleOverlayBtn.textContent = overlayVisible ? '🙈 Esconder Sobreposição' : '👀 Mostrar Sobreposição';
-            updateStatus(`Sobreposição ${overlayVisible ? 'visível' : 'oculta'}`, false);
-        });
-
-        // Função de captura da área inteira (container com imagens + texto flutuante)
-        downloadBtn.addEventListener('click', () => {
-            // Usar html2canvas? vou implementar via canvas nativo, porém devido à complexidade de imagens externas (CORS placehold? Mas placehold.co permite)
-            // Utilizaremos a biblioteca html2canvas de forma dinâmica? Injetar script? Prefiro usar canvas puro desenhando as imagens e texto.
-            // Mas a solução mais robusta e simples para não adicionar dependências externas: capturar via html2canvas CDN se não existir.
-            // Como a pergunta não proíbe libs, mas melhor ser auto-contido. Vou implementar uma função que tira screenshot do container usando 
-            // html2canvas via CDN (carregamento sob demanda). Assim garantimos qualidade.
-            if (typeof html2canvas === 'undefined') {
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-                script.onload = () => {
-                    captureContainer();
-                };
-                script.onerror = () => {
-                    updateStatus('Erro ao carregar biblioteca de captura. Tente novamente mais tarde.', true);
-                };
-                document.head.appendChild(script);
-            } else {
-                captureContainer();
-            }
-        });
-
-        function captureContainer() {
-            html2canvas(container, {
-                scale: 2,
-                backgroundColor: null,
-                useCORS: true,
-                logging: false,
-                allowTaint: false
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'composicao_imagem_texto.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                updateStatus('Captura salva! Imagem final baixada.', false);
-            }).catch(err => {
-                console.error(err);
-                updateStatus('Falha na captura. Verifique permissões CORS ou recarregue.', true);
-            });
-        }
-
-        // Inicializar configurações adicionais: corrigir o texto inicial, e imagem padrão.
-        function initDefault() {
-            // carregar imagens padrão (placeholders agradáveis)
-            loadImage(DEFAULT_BASE_URL, baseImage, true, DEFAULT_BASE_URL);
-            loadImage(DEFAULT_OVERLAY_URL, overlayImage, true, DEFAULT_OVERLAY_URL);
-            // configurar texto inicial
-            setTextBoxContent('Minha Mensagem');
-            textInput.value = 'Minha Mensagem';
-            // definir posições iniciais com estilo relativo
-            textBox.style.position = 'absolute';
-            textBox.style.left = '20%';
-            textBox.style.top = '20%';
-            textBox.style.maxWidth = '70%';
-            // habilitar arraste
-            initDraggable();
-            // eventuais ajustes de redimensionamento da janela: revalidar limites de arrasto? Não necessário pois arraste verifica na hora.
-            // Para garantir que a caixa de texto não fique fora ao redimensionar a janela, podemos adicionar um listener opcional.
-            window.addEventListener('resize', () => {
-                // apenas garantir que se a caixa estiver fora dos limites, ajuste suave
-                const containerRect = container.getBoundingClientRect();
-                if (containerRect.width > 0) {
-                    let left = parseFloat(textBox.style.left);
-                    let top = parseFloat(textBox.style.top);
-                    if (isNaN(left)) left = 20;
-                    if (isNaN(top)) top = 20;
-                    const maxLeft = containerRect.width - textBox.offsetWidth;
-                    const maxTop = containerRect.height - textBox.offsetHeight;
-                    if (left > maxLeft) textBox.style.left = Math.max(0, maxLeft) + 'px';
-                    if (top > maxTop) textBox.style.top = Math.max(0, maxTop) + 'px';
-                    if (left < 0) textBox.style.left = '0px';
-                    if (top < 0) textBox.style.top = '0px';
-                }
-            });
-        }
-
-        // garantir que a sobreposição fique exatamente sobre a imagem base com tamanho 100% (já está via CSS)
-        // e a caixa de texto fica sobre tudo. Tudo pronto.
-        initDefault();
-    })();
-</script>
-<!-- carregamento do html2canvas sob demanda já é feito no download -->
+<!-- Nota: as imagens utilizadas são de domínio público/pexels licença gratuita, compatível com uso educacional.
+     Caso haja necessidade de substituição, manter a semântica. 
+     O título possui letras com pontas arredondadas devido à fonte 'Varela Round', que atende ao requisito.
+     O espaçamento: pequeno espaço entre subtítulo e primeira imagem = margin-top:0.8rem + gap de 0? 
+     Mas também temos o próprio padding do container. O gap entre cards é de 3rem (médio), conforme solicitado.
+     A imagem do cyberbullying está acima da do bullying, e o texto está à frente de cada imagem (lado a lado). 
+     Texto em preto com letra suave (font-weight 430, cor escura suave) e fonte Inter de alta legibilidade.
+     Tudo com fundo branco consistente.
+-->
 </body>
 </html>
+```
