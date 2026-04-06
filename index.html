@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagens Sobrepostas</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Imagem de Fundo */
+        .camada-1 {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Imagem Superior (com transparência ou menor) */
+        .camada-2 {
+            width: 250px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 2;
+            border: 5px solid white;
+        }
+
+        /* Caixa de Texto na Frente */
+        .caixa-texto {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Substitua as URLs pelas suas imagens -->
+        <img src="https://picsum.photos" alt="Fundo" class="camada-1">
+        <img src="https://picsum.photos" alt="Sobreposta" class="camada-2">
+        
+        <div class="caixa-texto">
+            <h2>Título da Caixa</h2>
+            <p>Este texto aparece na frente de tudo.</p>
+        </div>
+    </div>
+
+</body>
+</html>
