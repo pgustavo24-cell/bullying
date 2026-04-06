@@ -1,5 +1,3 @@
-Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subtítulo e as duas seções com imagens e textos explicativos.
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,21 +12,19 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
         }
 
         body {
-            background-color: #ffffff; /* fundo branco puro */
+            background-color: #ffffff;
             font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
             line-height: 1.5;
             color: #111;
             padding: 2rem 1.5rem 4rem;
         }
 
-        /* container principal para centralizar e limitar largura em telas grandes */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
         }
 
-        /* TÍTULO PRINCIPAL - pontas arredondadas */
         .titulo-principal {
             font-size: clamp(2.8rem, 8vw, 5rem);
             font-weight: 800;
@@ -36,29 +32,15 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             text-align: center;
             margin-bottom: 0.5rem;
             color: #1a1a1a;
-            /* pontas arredondadas: combinamos border-radius e background suave, 
-               mas também podemos aplicar um efeito de "rounded" no texto em si.
-               Para dar o aspecto arredondado às letras, usaremos text-stroke ou 
-               um filtro? Melhor: utilizamos uma fonte com terminações suaves,
-               mas o pedido pede que as letras tenham pontas arredondadas.
-               Vamos aplicar uma propriedade que simula bordas arredondadas no texto? 
-               Não é possível diretamente, mas podemos usar um background com border-radius 
-               e exibir o texto dentro de um elemento arredondado, porém as letras em si 
-               ficariam normais. O requisito "que as letras tenham pontas arredondadas" 
-               pode ser alcançado com uma fonte de alta legibilidade e formato mais suave 
-               (ex: 'Nunito', 'Quicksand' ou 'Varela Round'). Vamos usar 'Varela Round' 
-               que possui terminações arredondadas, garantindo o aspecto visual.
-            */
             font-family: 'Varela Round', 'Nunito', 'Quicksand', system-ui, sans-serif;
             background: linear-gradient(145deg, #f8f8f8, #ffffff);
             display: inline-block;
             width: 100%;
             padding: 0.25em 0.1em;
-            border-radius: 60px; /* arredondamento no bloco, mas as letras em si são da família arredondada */
+            border-radius: 60px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        /* subtítulo */
         .subtitulo {
             text-align: center;
             font-size: 1.5rem;
@@ -78,14 +60,12 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             text-align: center;
         }
 
-        /* grade dupla: um para cyberbullying (em cima) e bullying (embaixo) com espaçamento médio */
         .card-grid {
             display: flex;
             flex-direction: column;
-            gap: 3rem; /* espaço médio entre os cards (um pouco maior que pequeno) */
+            gap: 3rem;
         }
 
-        /* cada card: imagem + texto lado a lado em desktop, empilhado em mobile */
         .card {
             display: flex;
             flex-wrap: wrap;
@@ -99,7 +79,6 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
         }
 
-        /* área da imagem */
         .img-area {
             flex: 1.2;
             min-width: 240px;
@@ -121,7 +100,6 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             transform: scale(1.01);
         }
 
-        /* área do texto (descrição) */
         .texto-area {
             flex: 1.4;
             min-width: 260px;
@@ -143,27 +121,15 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             box-shadow: 0 1px 1px rgba(0,0,0,0.01);
         }
 
-        /* para dar um toque de letra suave */
         .descricao {
             font-weight: 430;
             color: #1f2a2e;
         }
 
-        /* espaçamento pequeno entre título e primeira imagem? 
-           O pedido: "em baixo do titulo tenha um sub titulo escrito os dois principais, 
-           logo abaixo com um pequeno espaço tenha uma imagem do cyberbullying e outro logo em baixo 
-           com espaço medio entre eles com uma imagem do bullying"
-           Interpretação: após o subtítulo, teremos um pequeno espaço (ex: margin-bottom) e então a 
-           primeira imagem (cyberbullying) com seu respectivo card de texto. Depois, um espaço médio 
-           (gap maior entre os cards) separando o card do bullying. 
-           No código, definimos gap: 3rem entre os cards (médio). Além disso, antes do primeiro card 
-           há um margin-top pequeno (1rem) configurado abaixo. 
-        */
         .primeiro-card {
-            margin-top: 0.8rem; /* pequeno espaço após o subtítulo */
+            margin-top: 0.8rem;
         }
 
-        /* Responsividade */
         @media (max-width: 750px) {
             body {
                 padding: 1.2rem 1rem 2rem;
@@ -188,48 +154,22 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             }
         }
 
-        /* detalhes de foco e acessibilidade */
         img {
             pointer-events: auto;
         }
 
-        /* efeito adicional suave */
         .card {
             border: 1px solid #f0f0f0;
         }
 
-        /* garantia de quebra de palavras */
         .descricao {
             word-break: break-word;
         }
-
-        /* As imagens: usaremos placeholders via Unsplash ou imagens ilustrativas reais sobre bullying e cyberbullying.
-           Como não tenho acesso a imagens locais, usarei URLs públicas de domínio livre e de alta qualidade, 
-           relacionadas aos temas: ilustrações que representem bullying escolar e cyberbullying digital.
-           Vamos utilizar imagens do Unsplash com licença gratuita (pode ser usado para fins educacionais/demonstração).
-           Para garantir disponibilidade, usaremos imagens de repositórios gratuitos e confiáveis. 
-           Opto por imagens via Picsum ou via placeholder com tema? Melhor: buscar imagens semânticas.
-           Utilizarei duas imagens da plataforma "Pexels" via CDN (ou do Unsplash) que representem bem os conceitos.
-           Abaixo URLs que retratam:
-           - Cyberbullying: uma pessoa triste com celular, intimidação virtual.
-           - Bullying tradicional: criança sofrendo intimidação no ambiente escolar.
-           Como é um exemplo didático, usarei imagens com licença Creative Commons de sites como Pixabay via API? 
-           Vamos usar imagens seguras do Cloudimage ou placeholder com temática? Melhor: Imagens do site "Picsum" não são temáticas.
-           Vou inserir imagens de domínio público retiradas do 'rawpixel' ou uso imagens ilustrativas geradas? 
-           Para garantir funcionamento offline? Utilizarei imagens gratuitas e licenciadas para uso educacional, 
-           provenientes de coleção 'Unsplash' com atribuição não obrigatória (mas citamos apenas para demonstração).
-           Forneço URLs diretas que representam:
-           1) Cyberbullying: menina com celular angustiada - imagem Unsplash ID (foto de Dose Media)
-           2) Bullying: criança sendo excluída no pátio - imagem Unsplash (foto de CDC)
-           As URLs são públicas e estáveis. 
-        */
     </style>
-    <!-- Fonte com pontas arredondadas (Varela Round) e fallback suave -->
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <!-- TÍTULO com letras arredondadas (fonte Varela Round garante terminações suaves) -->
     <h1 class="titulo-principal">BULLYING</h1>
     
     <div class="subtitulo-wrapper">
@@ -237,15 +177,15 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
     </div>
 
     <div class="card-grid">
-        <!-- PRIMEIRO CARD: CYBERBULLYING (pequeno espaço abaixo do subtítulo = margin-top do primeiro-card) -->
+        <!-- PRIMEIRO CARD: CYBERBULLYING - imagem substituída pela foto do site Kaspersky -->
         <div class="card primeiro-card">
             <div class="img-area">
-                <!-- Imagem representativa do cyberbullying: pessoa com celular e expressão de angústia, ilustrando ambiente virtual -->
-                <img src="https://images.pexels.com/photos/5473173/pexels-photo-5473173.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
-                     alt="Ilustração de cyberbullying: pessoa triste usando celular e tablet, representando agressão virtual"
+                <!-- Imagem de cyberbullying proveniente do site Kaspersky (URL oficial de conteúdo sobre segurança digital) -->
+                <img src="https://www.kaspersky.com/content/pt-br/images/repository/cyberbullying-2022.jpg" 
+                     alt="Cyberbullying - conceito de intimidação virtual, imagem ilustrativa Kaspersky"
                      loading="lazy"
-                     style="object-fit: cover; width:100%; max-width:420px; border-radius:28px;">
-                <!-- fallback caso imagem não carregue: texto alternativo -->
+                     style="object-fit: cover; width:100%; max-width:420px; border-radius:28px;"
+                     onerror="this.onerror=null; this.src='https://images.pexels.com/photos/5473173/pexels-photo-5473173.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop';">
             </div>
             <div class="texto-area">
                 <div class="descricao">
@@ -254,10 +194,9 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             </div>
         </div>
 
-        <!-- SEGUNDO CARD: BULLYING (espaço médio entre eles definido pelo gap 3rem) -->
+        <!-- SEGUNDO CARD: BULLYING TRADICIONAL (imagem permanece inalterada) -->
         <div class="card">
             <div class="img-area">
-                <!-- Imagem representativa do bullying tradicional: ambiente escolar, criança sofrendo intimidação física/psicológica -->
                 <img src="https://images.pexels.com/photos/7264766/pexels-photo-7264766.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
                      alt="Criança isolada e triste em ambiente escolar, representando bullying tradicional"
                      loading="lazy"
@@ -270,21 +209,9 @@ Segue o código HTML/CSS solicitado, com fundo branco, título arredondado, subt
             </div>
         </div>
     </div>
-    <!-- pequeno rodapé opcional apenas para contexto (sem interferir) -->
     <div style="text-align: center; margin-top: 3rem; font-size: 0.75rem; color: #aaa; font-family: monospace;">
         Conscientização contra o bullying e cyberbullying | Respeito sempre
     </div>
 </div>
-
-<!-- Nota: as imagens utilizadas são de domínio público/pexels licença gratuita, compatível com uso educacional.
-     Caso haja necessidade de substituição, manter a semântica. 
-     O título possui letras com pontas arredondadas devido à fonte 'Varela Round', que atende ao requisito.
-     O espaçamento: pequeno espaço entre subtítulo e primeira imagem = margin-top:0.8rem + gap de 0? 
-     Mas também temos o próprio padding do container. O gap entre cards é de 3rem (médio), conforme solicitado.
-     A imagem do cyberbullying está acima da do bullying, e o texto está à frente de cada imagem (lado a lado). 
-     Texto em preto com letra suave (font-weight 430, cor escura suave) e fonte Inter de alta legibilidade.
-     Tudo com fundo branco consistente.
--->
 </body>
 </html>
-```
